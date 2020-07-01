@@ -12,12 +12,23 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ReportingRepository {
 
+    /**
+     * Logger for outputting messages in the terminal/console for the mock db queries
+     */
     Logger LOGGER = LoggerFactory.getLogger(ReportingRepository.class);
 
-    public void saveQuestion(QuestionPayload questionPayload) {
+    /**
+     * Mock method that would save the questionPayload and grade to the database
+     * @param questionPayload
+     */
+    public void saveQuestion(QuestionPayload questionPayload, String grade) {
         LOGGER.info("Saving question to database...");
     }
 
+    /**
+     * Mock method that would query the db for all records where the problem statement input units was in the specified units
+     * @param inputUnits
+     */
     public void getQuestionsByProblemStatementUnits(String inputUnits) {
         if (inputUnits.toLowerCase().contains(Temperature.FAHRENHEIT) ||
             inputUnits.toLowerCase().contains(Temperature.CELSIUS) ||
@@ -29,6 +40,10 @@ public class ReportingRepository {
         }
     }
 
+    /**
+     * Mock method that would query the db for all records where the target units were in the specified units
+     * @param targetUnits
+     */
     public void getQuestionsByTargetUnits(String targetUnits) {
         LOGGER.info("Getting all records with " + targetUnits + " target units.");
         if (targetUnits.toLowerCase().contains(Temperature.FAHRENHEIT) ||
@@ -41,6 +56,10 @@ public class ReportingRepository {
         }
     }
 
+    /**
+     * Mock method that would query the db for all records where the grade was the same as the specified grade
+     * @param grade
+     */
     public void getQuestionsByGrade(String grade) {
         LOGGER.info("Getting all records with " + grade + " grade.");
         if (grade.toLowerCase().contains("correct") ||

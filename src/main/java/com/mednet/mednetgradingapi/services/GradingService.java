@@ -30,22 +30,23 @@ public class GradingService {
     ReportingRepository reportingRepository;
 
     /**
-     * Method used to determine the grade.
-     * Compares the calculated converted temperature to the student's response.
+     * Method used to determine the grade and return grade.
+     * Compares the calculated converted temperature to the student's response and returns grade.
      * @param questionPayload
      * @return String "correct" or String "incorrect" depending on the result of the comparison
      */
     public String determineGrade(QuestionPayload questionPayload) {
-
-        reportingRepository.saveQuestion(questionPayload);
-
         Temperature temperature = temperatureService.convert(questionPayload);
+        String grade;
 
         double normalizedTemperatureConversion = RoundingUtil.toOnesPlace(temperature.getTempInTargetUnits(questionPayload.getTargetUnits()));
         double normalizedStudentResponse = RoundingUtil.toOnesPlace(Double.parseDouble(questionPayload.getStudentResponse()));
 
         // Ternary being used here.
         // Example syntax: booleanExpression ? expression1 : expression2
-        return (normalizedTemperatureConversion == normalizedStudentResponse) ? "correct" : "incorrect";
+        grade = (normalizedTemperatureConversion == normalizedStudentResponse) ? "correct" : "incorrect";
+        reportingRepository.saveQuestion(questionPayload, grade);
+
+        return grade;
     }
 }

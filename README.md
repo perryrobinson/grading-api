@@ -19,8 +19,12 @@ How to run
 2) Run src\main\java\com\mednet\mednetgradingapi\MednetGradingApiApplication.java with IntelliJ IDEA locally . 
 3) Once the API is running, visit http://localhost:8081/swagger-ui.html to interact with API locally .
 4) Click on "grading-controller" in Swagger UI. 
-5) Under the POST request, click "try it out".
+5) Under the POST request, click "try it out" .
 6) Fill in the json data with inputTemperature, inputUnits, studentResponse, and targetUnits .
+7) Click on "reporting-controller" in Swagger UI .
+8) Under one of the GET requests, click "try it out" .
+9) Fill in the json data with the required data and execute the call .
+10) Check terminal/console for logger messages .
 
 Sample data:
 1) correct studentResponse, returns "correct"
