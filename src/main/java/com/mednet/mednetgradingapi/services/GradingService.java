@@ -2,6 +2,7 @@ package com.mednet.mednetgradingapi.services;
 
 import com.mednet.mednetgradingapi.models.QuestionPayload;
 import com.mednet.mednetgradingapi.models.Temperature;
+import com.mednet.mednetgradingapi.repository.ReportingRepository;
 import com.mednet.mednetgradingapi.utils.RoundingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,13 +23,21 @@ public class GradingService {
     TemperatureService temperatureService;
 
     /**
+     * Autowire gradingRepository so that one instance if created and reused, instead of creating a new instance
+     * every time the API is called.
+     */
+    @Autowired
+    ReportingRepository reportingRepository;
+
+    /**
      * Method used to determine the grade.
      * Compares the calculated converted temperature to the student's response.
      * @param questionPayload
      * @return String "correct" or String "incorrect" depending on the result of the comparison
      */
-
     public String determineGrade(QuestionPayload questionPayload) {
+
+        reportingRepository.saveQuestion(questionPayload);
 
         Temperature temperature = temperatureService.convert(questionPayload);
 
@@ -37,7 +46,6 @@ public class GradingService {
 
         // Ternary being used here.
         // Example syntax: booleanExpression ? expression1 : expression2
-
         return (normalizedTemperatureConversion == normalizedStudentResponse) ? "correct" : "incorrect";
     }
 }

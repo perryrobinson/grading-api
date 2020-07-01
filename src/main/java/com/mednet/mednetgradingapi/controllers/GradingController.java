@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * RestController is a Spring Boot controller, takes care of mapping request data to the defined request
- * handler method. Once response body is generated from the handler method, it converts it to JSON or XML response
+ * handler method. Once response body is generated from the handler method, it converts it to JSON or XML response.
+ * GradingController handles a POST request to return a grade when given a questionPayload.
  */
 @RestController
 public class GradingController {
