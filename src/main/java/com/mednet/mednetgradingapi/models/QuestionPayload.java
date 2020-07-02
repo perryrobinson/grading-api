@@ -46,4 +46,15 @@ public class QuestionPayload {
         return studentResponse;
     }
 
+    public void setProblemStatement(ProblemStatement problemStatement) {
+        this.problemStatement = problemStatement;
+    }
+
+    public void setTargetUnits(String targetUnits) {
+        this.targetUnits = targetUnits;
+    }
+
+    public void setStudentResponse(String studentResponse) {
+        this.studentResponse = studentResponse;
+    }
 }

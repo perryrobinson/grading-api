@@ -53,7 +53,7 @@ public class CommonControllerAdvice {
      * and returns "incorrect" to the caller.
      * This exception occurs if an unparseable student response is supplied to the API.
      * @param exception
-     * @return String "incorrect
+     * @return String "incorrect"
      */
     @ExceptionHandler({NumberFormatException.class, NullPointerException.class})
     ResponseEntity<String> incorrectError(Exception exception) {

@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReportingService {
 
+    private ReportingRepository reportingRepository;
+
     /**
      * Autowire reportingRepository so that one instance if created and reused, instead of creating a new instance
      * every time the API is called.
      */
     @Autowired
-    ReportingRepository reportingRepository;
+    public ReportingService(ReportingRepository reportingRepository) {
+        this.reportingRepository = reportingRepository;
+    }
 
     /**
      * Normally, the repository would be an interface and the methods that are implemented currently in the repository

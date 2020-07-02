@@ -3,7 +3,10 @@ package com.mednet.mednetgradingapi.utils;
 /**
  * RoundingUtil class is a simple utility for rounding
  */
-public class RoundingUtil {
+public final class RoundingUtil {
+
+    private RoundingUtil() {
+    }
 
     /**
      * Method for rounding a double to the ones place.

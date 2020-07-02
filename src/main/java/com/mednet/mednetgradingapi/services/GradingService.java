@@ -15,19 +15,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class GradingService {
 
-    /**
-     * Autowire temperatureService so that one instance if created and reused, instead of creating a new instance
-     * every time the API is called.
-     */
-    @Autowired
-    TemperatureService temperatureService;
+    private TemperatureService temperatureService;
+    private ReportingRepository reportingRepository;
 
     /**
-     * Autowire gradingRepository so that one instance if created and reused, instead of creating a new instance
+     * Autowire temperatureService and gradingRepository so that one instance if created and reused, instead of creating a new instance
      * every time the API is called.
      */
     @Autowired
-    ReportingRepository reportingRepository;
+    public GradingService(TemperatureService temperatureService, ReportingRepository reportingRepository) {
+        this.temperatureService = temperatureService;
+        this.reportingRepository = reportingRepository;
+    }
 
     /**
      * Method used to determine the grade and return grade.
