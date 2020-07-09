@@ -1,5 +1,6 @@
 package com.mednet.mednetgradingapi.services;
 
+import com.mednet.mednetgradingapi.exceptions.UnparseableStudentResponseException;
 import com.mednet.mednetgradingapi.models.QuestionPayload;
 import com.mednet.mednetgradingapi.models.Temperature;
 import com.mednet.mednetgradingapi.repository.ReportingRepository;
@@ -39,11 +40,16 @@ public class GradingService {
         String grade;
 
         double normalizedTemperatureConversion = RoundingUtil.toOnesPlace(temperature.getTempInTargetUnits(questionPayload.getTargetUnits()));
-        double normalizedStudentResponse = RoundingUtil.toOnesPlace(Double.parseDouble(questionPayload.getStudentResponse()));
 
-        // Ternary being used here.
-        // Example syntax: booleanExpression ? expression1 : expression2
-        grade = (normalizedTemperatureConversion == normalizedStudentResponse) ? "correct" : "incorrect";
+        try {
+            double normalizedStudentResponse = RoundingUtil.toOnesPlace(Double.parseDouble(questionPayload.getStudentResponse()));
+            // Ternary being used here.
+            // Example syntax: booleanExpression ? expression1 : expression2
+            grade = (normalizedTemperatureConversion == normalizedStudentResponse) ? "correct" : "incorrect";
+        } catch (NullPointerException | NumberFormatException ex) {
+            throw new UnparseableStudentResponseException("Unparseable student response!", ex);
+        }
+
         reportingRepository.saveQuestion(questionPayload, grade);
 
         return grade;

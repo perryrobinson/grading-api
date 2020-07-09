@@ -113,7 +113,7 @@ class GradingServiceTest {
     }
 
     /**
-     * This should never happen, Spring will return a 400 error if you pass in a null value for 
+     * This should never happen, Spring will return a 400 error if you pass in a null value for studentResponse
      */
     @Test
     void determineGradeIncorrectStudentResponseNullResult() {

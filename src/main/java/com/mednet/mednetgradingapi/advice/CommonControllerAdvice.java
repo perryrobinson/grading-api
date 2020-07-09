@@ -2,6 +2,7 @@ package com.mednet.mednetgradingapi.advice;
 
 import com.mednet.mednetgradingapi.exceptions.InvalidProblemStatementUnitsException;
 import com.mednet.mednetgradingapi.exceptions.InvalidTargetUnitsException;
+import com.mednet.mednetgradingapi.exceptions.UnparseableStudentResponseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class CommonControllerAdvice {
      * @return String "invalid"
      */
     @ExceptionHandler(InvalidProblemStatementUnitsException.class)
-    ResponseEntity<String> generalError(Exception exception) {
+    ResponseEntity<String> invalidProblemStatementUnitsError(Exception exception) {
         LOGGER.error("Invalid problem statement", exception);
         return ResponseEntity.ok("invalid");
     }
@@ -48,15 +49,28 @@ public class CommonControllerAdvice {
         return ResponseEntity.ok("invalid");
     }
 
+//    /**
+//     * NumberFormatException or NullPointerException is handled by the CommonControllerAdvice and cancels the current request
+//     * and returns "incorrect" to the caller.
+//     * This exception occurs if an unparseable student response is supplied to the API.
+//     * @param exception
+//     * @return String "incorrect"
+//     */
+//    @ExceptionHandler({NumberFormatException.class, NullPointerException.class})
+//    ResponseEntity<String> incorrectError(Exception exception) {
+//        LOGGER.error("Unparseable student response", exception);
+//        return ResponseEntity.ok("incorrect");
+//    }
+
     /**
-     * NumberFormatException or NullPointerException is handled by the CommonControllerAdvice and cancels the current request
+     * UnparseableStudentResponseException is handled by the CommonControllerAdvice and cancels the current request
      * and returns "incorrect" to the caller.
      * This exception occurs if an unparseable student response is supplied to the API.
      * @param exception
      * @return String "incorrect"
      */
-    @ExceptionHandler({NumberFormatException.class, NullPointerException.class})
-    ResponseEntity<String> incorrectError(Exception exception) {
+    @ExceptionHandler(UnparseableStudentResponseException.class)
+    ResponseEntity<String> unparseableStudentResponseError(Exception exception) {
         LOGGER.error("Unparseable student response", exception);
         return ResponseEntity.ok("incorrect");
     }

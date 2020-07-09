@@ -81,3 +81,48 @@ Sample data:
   "studentResponse": "45.32",
   "targetUnits": "Celsius"
 }
+
+6) list of all sample json above, used for the grade-worksheet endpoint
+
+[
+  {
+    "problemStatement": {
+      "inputTemperature": "84.2",
+      "inputUnits": "Fahrenheit"
+    },
+    "studentResponse": "543.5",
+    "targetUnits": "Rankine"
+  },
+  {
+    "problemStatement": {
+      "inputTemperature": "-45.14",
+      "inputUnits": "Celsius"
+    },
+    "studentResponse": "227.51",
+    "targetUnits": "Kelvin"
+  },
+{
+  "problemStatement": {
+    "inputTemperature": "317.33",
+    "inputUnits": "Kelvin"
+  },
+  "studentResponse": "110.5",
+  "targetUnits": "Fahrenheit"
+},
+{
+  "problemStatement": {
+    "inputTemperature": "6.5",
+    "inputUnits": "Fahrenheit"
+  },
+  "studentResponse": "cat",
+  "targetUnits": "Rankine"
+},
+{
+  "problemStatement": {
+    "inputTemperature": "bird",
+    "inputUnits": ""
+  },
+  "studentResponse": "45.32",
+  "targetUnits": "Celsius"
+}
+]
